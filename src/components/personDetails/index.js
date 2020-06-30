@@ -1,8 +1,3 @@
-import React, { Component } from "react";
-import "./PersonDetails.css";
+import PersonDetails from "./PersonDetails";
 
-export default class index extends Component {
-  render() {
-    return <div>Person Details</div>;
-  }
-}
+export default PersonDetails;
