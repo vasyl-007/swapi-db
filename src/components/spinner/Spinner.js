@@ -4,10 +4,16 @@ import "./Spinner.css";
 
 const Spinner = () => {
   return (
-    <div className="lds-css">
-      <div className="lds-double-ring">
+    <div class="loadingio-spinner-double-ring-fapidwzfidv center">
+      <div class="ldio-8oarl5li1o">
         <div></div>
         <div></div>
+        <div>
+          <div></div>
+        </div>
+        <div>
+          <div></div>
+        </div>
       </div>
     </div>
   );

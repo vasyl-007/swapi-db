@@ -10,12 +10,12 @@ export default class RandomPlanet extends Component {
 
   state = {
     planet: {},
-    id: null,
-    loading: true,
-    name: null,
-    population: null,
-    rotationPeriod: null,
-    diameter: null,
+    // id: null,
+    // loading: true,
+    // name: null,
+    // population: null,
+    // rotationPeriod: null,
+    // diameter: null,
   };
   constructor() {
     super();
@@ -52,6 +52,7 @@ const PlanetView = ({ planet }) => {
   // const { id, name, population, rotationPeriod, diameter } = planet;
   const { id, name, population, rotationPeriod, diameter } = planet;
 
+  return <Spinner />;
   return (
     <React.Fragment>
       <img
