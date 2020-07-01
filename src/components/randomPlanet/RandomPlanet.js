@@ -4,18 +4,15 @@ import Spinner from "../spinner";
 import SwapiService from "../../services/SwapiService";
 
 import "./RandomPlanet.css";
+import ErrorIndicator from "../errorIndicator";
 
 export default class RandomPlanet extends Component {
   swapiService = new SwapiService();
 
   state = {
     planet: {},
-    // id: null,
-    // loading: true,
-    // name: null,
-    // population: null,
-    // rotationPeriod: null,
-    // diameter: null,
+    loading: true,
+    error: false,
   };
   constructor() {
     super();
@@ -27,20 +24,31 @@ export default class RandomPlanet extends Component {
       loading: false,
     });
   };
-
+  onError = (err) => {
+    this.setState({
+      error: true,
+      loading: false,
+    });
+  };
   updatePlanet() {
-    const id = Math.floor(Math.random() * (20 - 2)) + 2;
-    this.swapiService.getPlanet(id).then(this.onPlanetLoaded);
+    const id = 1500;
+    // const id = Math.floor(Math.random() * (20 - 2)) + 2;
+    this.swapiService
+      .getPlanet(id)
+      .then(this.onPlanetLoaded)
+      .catch(this.onError);
   }
 
   render() {
-    console.log("this.state--->", this.state);
-    const { planet, loading } = this.state;
+    const { planet, loading, error } = this.state;
+    const hasData = !(error || loading);
+    const errorMessage = error ? <ErrorIndicator /> : null;
     const spinner = loading ? <Spinner /> : null;
-    const content = !loading ? <PlanetView planet={planet} /> : null;
+    const content = hasData ? <PlanetView planet={planet} /> : null;
 
     return (
       <div className="random-planet jumbotron rounded">
+        {errorMessage}
         {spinner}
         {content}
       </div>
@@ -49,15 +57,13 @@ export default class RandomPlanet extends Component {
 }
 
 const PlanetView = ({ planet }) => {
-  // const { id, name, population, rotationPeriod, diameter } = planet;
   const { id, name, population, rotationPeriod, diameter } = planet;
 
-  return <Spinner />;
   return (
     <React.Fragment>
       <img
         className="planet-image"
-        // src="https://starwars-visualguide.com/assets/img/planets/12.jpg"
+        // src="https://starwars-visualguide.com/assets/img/planets/1200.jpg"
         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
         alt="random-planet"
       />

@@ -1,0 +1,18 @@
+.error-indicator {
+    margin: auto;
+}
+
+.boom {
+    display   : block;
+    text-align: center;
+    color     : rgb(211, 109, 40)
+}
+
+.error-icon {
+    display      : block;
+    width        : 300px;
+    height       : auto;
+    margin       : auto;
+    margin-bottom: 20px;
+
+}
