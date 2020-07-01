@@ -11,13 +11,15 @@ export default class RandomPlanet extends Component {
   state = {
     planet: {},
     loading: true,
+    name: null,
+    population: null,
+    rotationPeriod: null,
+    diameter: null,
   };
-
   constructor() {
     super();
     this.updatePlanet();
   }
-
   onPlanetLoaded = (planet) => {
     this.setState({
       planet,
@@ -27,7 +29,15 @@ export default class RandomPlanet extends Component {
 
   updatePlanet() {
     const id = 12;
-    this.swapiService.getPlanet(id).then(this.onPlanetLoaded);
+    this.swapiService.getPlanet(id).then((planet) => {
+      console.log("Planet0", planet);
+      this.setState({
+        name: planet.name,
+        population: planet.population,
+        rotationPeriod: planet.rotation_period,
+        diameter: planet.diameter,
+      });
+    });
   }
 
   render() {
@@ -44,14 +54,16 @@ export default class RandomPlanet extends Component {
   }
 }
 
-const PlanetView = ({ planet }) => {
-  const { id, name, population, rotationPeriod, diameter } = planet;
+const PlanetView = () => {
+  // const { id, name, population, rotationPeriod, diameter } = planet;
+  const { name, population, rotationPeriod, diameter } = this.state;
 
   return (
     <React.Fragment>
       <img
         className="planet-image"
-        src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+        src="https://starwars-visualguide.com/assets/img/planets/12.jpg"
+        // src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
         alt="random-planet"
       />
       <div>
