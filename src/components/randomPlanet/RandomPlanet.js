@@ -6,17 +6,17 @@ import SwapiService from "../../services/SwapiService";
 import "./RandomPlanet.css";
 import ErrorIndicator from "../errorIndicator";
 
-// export default class RandomPlanet extends Component {
-//   swapiService = new SwapiService();
+export default class RandomPlanet extends Component {
+  swapiService = new SwapiService();
 
-//   state = {
-//     planet: {},
-//     loading: true,
-//     error: false,
-//   };
-//   // eslint-disable-next-line no-useless-constructor
-//   constructor() {
-//     super();
+  state = {
+    planet: {},
+    loading: true,
+    error: false,
+  };
+  // eslint-disable-next-line no-useless-constructor
+  constructor() {
+    super();
   }
   componentDidMount() {
     console.log("Did mount");
