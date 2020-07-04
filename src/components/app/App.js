@@ -14,7 +14,7 @@ export default class App extends Component {
   swapiService = new SwapiService();
   state = {
     showRandomPlanet: true,
-    // selectedPerson: 5,
+    selectedPerson: 5,
     hasError: false,
   };
   toggleRandomPlanet = () => {
@@ -24,11 +24,11 @@ export default class App extends Component {
       };
     });
   };
-  // onItemSelected = (id) => {
-  //   this.setState({
-  //     selectedPerson: id,
-  //   });
-  // };
+  onItemSelected = (id) => {
+    this.setState({
+      selectedPerson: id,
+    });
+  };
   comonentDidCatch() {
     console.log("comonentDidCatch");
     this.setState({ hasError: true });

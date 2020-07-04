@@ -3,8 +3,10 @@ import "./PeoplePage.css";
 import PersonDetails from "../personDetails";
 import ItemList from "../itemList";
 import ErrorIndicator from "../errorIndicator";
+import SwapiService from "../../services/SwapiService";
 
 export default class PeoplePage extends Component {
+  swapiService = new SwapiService();
   state = {
     selectedPerson: 5,
     hasError: false,
