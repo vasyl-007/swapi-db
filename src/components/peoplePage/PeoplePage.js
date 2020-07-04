@@ -22,17 +22,17 @@ export default class PeoplePage extends Component {
       return <ErrorIndicator />;
     }
     return (
-      <>
-        <p>People Page</p>
-        <div className="row mb2">
-          <div className="col-md-6">
-            <ItemList onItemSelected={this.onItemSelected} />
-          </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson} />
-          </div>
+      <div className="row mb2">
+        <div className="col-md-6">
+          <ItemList
+            onItemSelected={this.onItemSelected}
+            getData={this.swapiService.getAllPeople}
+          />
         </div>
-      </>
+        <div className="col-md-6">
+          <PersonDetails personId={this.state.selectedPerson} />
+        </div>
+      </div>
     );
   }
 }

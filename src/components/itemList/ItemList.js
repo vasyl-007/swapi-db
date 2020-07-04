@@ -4,17 +4,24 @@ import "./ItemList.css";
 import Spinner from "../spinner";
 
 export default class ItemList extends Component {
-  swapiService = new SwapiService();
+  // swapiService = new SwapiService();
   state = {
-    peopleList: null,
+    itemList: null,
   };
 
   componentDidMount() {
-    this.swapiService.getAllPeople().then((peopleList) =>
+    const { getData } = this.props;
+
+    getData().then((itemList) =>
       this.setState({
-        peopleList,
+        itemList,
       })
     );
+    // this.swapiService.getAllPeople().then((itemList) =>
+    //   this.setState({
+    //     itemList,
+    //   })
+    // );
   }
 
   renderItems(arr) {
@@ -30,7 +37,7 @@ export default class ItemList extends Component {
       );
     });
   }
-  // const items = peopleList.map((people) => {
+  // const items = itemList.map((people) => {
   //   return (
   //     <li key={people.id} className="list-group-item">
   //       {people.name}
@@ -39,12 +46,12 @@ export default class ItemList extends Component {
   // });
 
   render() {
-    const { peopleList } = this.state;
+    const { itemList } = this.state;
 
-    if (!peopleList) {
+    if (!itemList) {
       return <Spinner />;
     }
-    const items = this.renderItems(peopleList);
+    const items = this.renderItems(itemList);
 
     return <ul className="item-list list-group">{items}</ul>;
   }
