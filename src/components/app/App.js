@@ -4,6 +4,7 @@ import Header from "../header";
 import RandomPlanet from "../randomPlanet";
 import ItemList from "../itemList";
 import PersonDetails from "../personDetails";
+import ErrorIndicator from "../errorIndicator";
 
 import "./App.css";
 
@@ -11,6 +12,7 @@ export default class App extends Component {
   state = {
     showRandomPlanet: true,
     selectedPerson: 5,
+    hasError: false,
   };
   toggleRandomPlanet = () => {
     this.setState((state) => {
@@ -24,7 +26,14 @@ export default class App extends Component {
       selectedPerson: id,
     });
   };
+  comonentDidCatch() {
+    console.log("comonentDidCatch");
+    this.setState({ hasError: true });
+  }
   render() {
+    if (this.state.hasError) {
+      return <ErrorIndicator />;
+    }
     const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
     return (
