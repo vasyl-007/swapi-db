@@ -9,6 +9,9 @@ import ErrorIndicator from "../errorIndicator";
 import "./App.css";
 import PeoplePage from "../peoplePage/PeoplePage";
 import SwapiService from "../../services/SwapiService";
+import ErrorBoundary from "../errorBoundary/ErrorBoundary";
+import { Row } from "../row/Row";
+import ItemDetails from "../itemDetails/ItemDetails";
 
 export default class App extends Component {
   swapiService = new SwapiService();
@@ -38,34 +41,37 @@ export default class App extends Component {
       return <ErrorIndicator />;
     }
     const planet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
-
+    const personDetails = <ItemDetails itemId={11} />;
+    const starshipDetails = <ItemDetails itemId={5} />;
     return (
-      <div className="stardb-app">
-        <Header />
-        {planet}
+      <ErrorBoundary>
+        <div className="stardb-app">
+          <Header />
+          {planet}
 
-        <button
-          className="toggle-planet btn btn-warning btn-lg"
-          onClick={this.toggleRandomPlanet}
-        >
-          Toggle Random Planet
-        </button>
-        <PeoplePage />
+          {/* <button
+            className="toggle-planet btn btn-warning btn-lg"
+            onClick={this.toggleRandomPlanet}
+          >
+            Toggle Random Planet
+          </button>
+          <PeoplePage />
 
-        <div className="row mb2">
-          <div className="col-md-6">
-            <ItemList
-              onItemSelected={this.onItemSelected}
-              getData={this.swapiService.getAllPlanets}
-              renderItem={(item) => item.name}
-            />
-          </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson} />
-          </div>
-        </div>
+          <div className="row mb2">
+            <div className="col-md-6">
+              <ItemList
+                onItemSelected={this.onItemSelected}
+                getData={this.swapiService.getAllPlanets}
+                renderItem={(item) => item.name}
+              />
+            </div>
+            <div className="col-md-6">
+              <PersonDetails personId={this.state.selectedPerson} />
+            </div>
+          </div> */}
 
-        <div className="row mb2">
+          <Row left={personDetails} right={starshipDetails} />
+          {/* <div className="row mb2">
           <div className="col-md-6">
             <ItemList
               onItemSelected={this.onItemSelected}
@@ -76,8 +82,9 @@ export default class App extends Component {
           <div className="col-md-6">
             <PersonDetails personId={this.state.selectedPerson} />
           </div>
+        </div> */}
         </div>
-      </div>
+      </ErrorBoundary>
     );
   }
 }
