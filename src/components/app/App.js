@@ -30,7 +30,7 @@ export default class App extends Component {
     });
   };
   comonentDidCatch() {
-    console.log("comonentDidCatch");
+    // console.log("comonentDidCatch");
     this.setState({ hasError: true });
   }
   render() {
